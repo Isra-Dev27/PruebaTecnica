@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="./styles.js"></script>
+    <style>
+      body {
+        overflow-x: hidden;
+        background-color: #e7ecee;
+      }
+
+      .encabezado {
+        background-color: #09a1f3;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
+      /* Estilo para hacer el carrusel de fondo */
+      #carouselExample {
+        position: fixed;
+        top: 0;
+        left: 0;
+        top: 3%;
+        width: 37%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* Estilo para hacer el contenedor centrado en la ventana */
+      .centered-container {
+        background-color: rgba(255, 255, 255, 0.5);
+        position: absolute;
+        width: 60%;
+        height: 82%;
+        top: 53%;
+        left: 69%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="encabezado">Esto es mi encabezado</div>
+    <div
+      id="carouselExample"
+      class="carousel slide"
+      data-bs-ride="carousel"
+      data-bs-interval="5000"
+    >
+      <div class="carousel-inner h-100">
+        <div class="carousel-item active h-100">
+          <img
+            src="./Img/Background1.jpeg"
+            class="d-block w-100 h-100"
+            alt="Image1"
+          />
+        </div>
+        <div class="carousel-item h-100">
+          <img
+            src="./Img/Background2.jpeg"
+            class="d-block w-100 h-100"
+            alt="Image2"
+          />
+        </div>
+        <div class="carousel-item h-100">
+          <img
+            src="./Img/Background3.jpeg"
+            class="d-block w-100 h-100"
+            alt="Image3"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedor centrado -->
+    <div class="centered-container">
+      <div class="row mt-3 mx-2">
+        <h6>Datos del Paciente</h6>
+      </div>
+      <div class="row mx-2">
+        <div class="col-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="Patient-Name"
+              placeholder="Nombre"
+            />
+            <label for="floatingInput" id="floatingLabel">Nombre</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="Patient-LastName"
+              placeholder="Apellido"
+            />
+            <label for="floatingInput" id="floatingLabel">Apellido</label>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 mx-2">
+        <div class="col-6">
+          <div class="form-floating h-100">
+            <input
+              type="datetime-local"
+              class="form-control"
+              id="Patient-Date"
+              placeholder="Fecha de Nacimiento"
+            />
+            <label for="floatingInput" id="floatingLabel"
+              >Fecha de Nacimiento</label
+            >
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="btn-group h-100 w-100">
+            <button
+              type="button"
+              class="btn btn-primary dropdown-toggle h-100 w-100"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              id="btn-Sex"
+            >
+              Genero
+            </button>
+            <ul class="dropdown-menu" id="listaGenero">
+              <li><a class="dropdown-item" onclick=" SelectSex(this)">Femenino</a></li>
+              <li><a class="dropdown-item" onclick=" SelectSex(this)">Masculino</a></li>
+              <li>
+                <a class="dropdown-item"onclick="SelectSex(this)">Prefiero no decirlo</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="border-top mt-3 mx-3"></div>
+      <div class="row mt-3 mx-2">
+        <h6>Datos Antropométricos</h6>
+      </div>
+      <div class="row mt-1 mx-2">
+        <div class="col-3">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              id="Patient-temperature"
+              placeholder="Temperatura"
+            />
+            <label for="floatingInput" id="floatingLabel">Temperatura</label>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              id="Patient-height"
+              placeholder="Estatura"
+            />
+            <label for="floatingInput" id="floatingLabel">Estatura</label>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              id="Patient-weight"
+              placeholder="Peso"
+            />
+            <label for="floatingInput" id="floatingLabel">Peso</label>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-floating">
+            <input
+              type="number"
+              class="form-control"
+              id="Patient-saturation"
+              placeholder="Saturacion de Oxigeno"
+            />
+            <label for="floatingInput" id="floatingLabel">Saturacion</label>
+          </div>
+        </div>
+      </div>
+      <div class="border-top mt-3 mx-3"></div>
+      <div class="row mt-3 mx-2">
+        <h6>Datos Adicionales</h6>
+      </div>
+      <div class="row mt-1 mx-2">
+        <div class="col w-100">
+          <div class="form-floating">
+            <textarea
+              class="form-control"
+              id="Patient-notes"
+              placeholder="Motivo de Consulta"
+              style="height: 100px"
+            ></textarea>
+            <label for="Patient-notes" id="floatingLabel"
+              >Motivo de Consulta</label
+            >
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 mx-2">
+        <h5>Diagnostico</h5>
+      </div>
+      <div class="row mt-3 mx-2">
+        <div class="col w-100">
+          <div class="col-12">
+            <input
+              type="text"
+              class="form-control h-100"
+              id="autoCompleteInput"
+              list="opciones"
+            />
+            <datalist id="opciones"> </datalist>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 mx-2">
+        <button type="button" class="btn btn-primary" onclick="calcularEdad(); InfDiagnostic() " data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Guardar
+        </button>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Informacion General</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <h6 id="Name"></h6>
+              </div>
+              <div class="col">
+                <h6 id="LName"></h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h6 id="Date"></h6>
+              </div>
+              <div class="col">
+                <h6 id="Sex"></h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h6 id="temp"></h6>
+              </div>
+              <div class="col">
+                <h6 id="weig"></h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h6 id="heig"></h6>
+              </div>
+              <div class="col">
+                <h6 id="satu"></h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h6 id="notes"></h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h6 id="diag"></h6>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./Main.js">
+    </script>
+  </body>
+</html>
